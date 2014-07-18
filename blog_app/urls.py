@@ -7,4 +7,5 @@ urlpatterns = patterns('',
 #     url(r'^(?P<pk>\d+)/$', views.DetailView.as_view(), name='detail'),
 #     url(r'^(?P<pk>\d+)/results/$', views.ResultsView.as_view(), name='results'),
     url(r'^$', views.index, name='index'),
+    url(r'^(?P<post_id>\d+)/$', views.detail, name='detail'),
 )

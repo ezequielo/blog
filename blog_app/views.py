@@ -11,6 +11,11 @@ from django.utils import timezone
 def index(request):
     latest_post_list = Post.objects.order_by('pub_date')[:5]
     return render(request, 'blog_app/index.html', {'latest_post_list':latest_post_list})
+
+
+def detail(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    return render(request,'blog_app/detail.html',{'post':post})
  
  
 # def detail(request, poll_id):

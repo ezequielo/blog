@@ -8,7 +8,7 @@ class Post(models.Model):
     pub_date = models.DateTimeField('date published')
     
     def __unicode__(self):
-        return self.question
+        return self.title
     
 
 # comment model
@@ -19,4 +19,4 @@ class Comment(models.Model):
     pub_date = models.DateTimeField('date published')
     
     def __unicode__(self):
-        return self.question
+        return self.pub_date

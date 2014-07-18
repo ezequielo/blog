@@ -2,12 +2,12 @@
 
 <!-- <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" /> -->
 
-{% if latest_poll_list %}
+{% if latest_post_list %}
     <ul>
-    {% for poll in latest_poll_list %}
-        <li>{{ poll.question }}</li>
+    {% for post in latest_post_list %}
+        <li><a href="{% url 'blog:detail' post.id %}">{{ post.title }} - {{ post.pub_date }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No polls are available.</p>
+    <p>No Post are available.</p>
 {% endif %}
