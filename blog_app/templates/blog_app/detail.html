@@ -4,6 +4,13 @@
 <h3>{{ post.pub_date }}</h3>
 <p>{{ post.body }}</p>
 
+<!-- WRITE COMMENT -->
+
+<form action="{% url 'blog:detail' post.id %}" method="POST">
+	{% csrf_token %}
+	<input type="text" name="text"/>
+	<input type="submit" value="Write a comment"/>
+</form>
 
 <!-- COMMENTS -->
 

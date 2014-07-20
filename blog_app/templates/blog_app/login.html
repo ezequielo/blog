@@ -1,0 +1,8 @@
+<!-- WRITE COMMENT -->
+
+<form action="{% url 'blog:detail' post.id %}" method="POST">
+	{% csrf_token %}
+	<input type="email" name="email"/>
+	<input type="password" name="pass"/>
+	<input type="submit" value="Login"/>
+</form>
