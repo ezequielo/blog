@@ -1,11 +1,12 @@
 from django.db import models
+from django.utils import timezone
 
 # post model
 class Post(models.Model):
     
     title = models.CharField(max_length=60)
-    body = models.CharField(max_length=500)
-    pub_date = models.DateTimeField('date published')
+    body = models.TextField(max_length=500)
+    pub_date = models.DateTimeField('date published', default=timezone.now())
     
     def __unicode__(self):
         return self.title
