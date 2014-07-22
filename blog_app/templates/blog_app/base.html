@@ -7,7 +7,9 @@
 <body>
 	<p>sadsadas</p>
      <div id="nav">
-        {% block navbar %}{% endblock navbar %}
+        {% block navbar %}
+        	{% include "blog_app/nav.html" %}
+        {% endblock navbar %}
     </div>
 
      <div id="content">
@@ -15,7 +17,10 @@
     </div>
     
     <div id="sidebar">
-        {% block sidebar %}{% endblock sidebar %}
+        {% block sidebar %}
+        	{% include "blog_app/sidebar.html" %}
+        {% endblock sidebar %}
+        
     </div> 
 </body>
 </html>

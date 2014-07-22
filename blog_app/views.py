@@ -9,7 +9,7 @@ from django.utils import timezone
 
 def index(request):
     latest_post_list = Post.objects.order_by('pub_date')[:5]
-    return render(request, 'blog_app/sidebar.html', {'latest_post_list':latest_post_list})
+    return render(request, 'blog_app/index.html', {'latest_post_list':latest_post_list})
 
 
 def detail(request, post_id):
