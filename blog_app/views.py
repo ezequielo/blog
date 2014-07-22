@@ -47,7 +47,7 @@ def login(request):
         if user is not None:
             if user.is_active:
                 auth_login(request, user)
-                url = 'blog_app/index.html'
+                return index(request)
             else:
                 vals['error_msg'] ='Usuario inactivo!'
         else:
