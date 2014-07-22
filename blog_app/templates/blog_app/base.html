@@ -6,21 +6,22 @@
 </head>
 
 <body>
-     <div id="nav">
-        {% block navbar %}
-        	{% include "blog_app/nav.html" %}
-        {% endblock navbar %}
+	<div class="wrapper">
+	    <div class="nav">
+	        {% block navbar %}
+	        	{% include "blog_app/nav.html" %}
+	        {% endblock navbar %}
+	    </div>
+	
+	     <div class="content">
+	        {% block content %}{% endblock content %}
+	    </div>
+	    
+	    <div class="footer">
+	    	{% block footer %}
+	    		{% include "blog_app/footer.html" %}
+	    	{% endblock footer %}
+	    </div>
     </div>
-
-     <div id="content">
-        {% block content %}{% endblock content %}
-    </div>
-    
-    <div id="sidebar">
-        {% block sidebar %}
-        	{% include "blog_app/sidebar.html" %}
-        {% endblock sidebar %}
-        
-    </div> 
 </body>
 </html>

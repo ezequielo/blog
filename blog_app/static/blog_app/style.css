@@ -1,3 +1,52 @@
 body {
     background: white url("images/background.png") repeat right bottom;
+    font-family:sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+	margin-left: 3em ;
+	margin-right: 3em ;
+	margin-top: 2em ;
+	margin-bottom: 2em ;
+	padding: 1em;
+    background-color: #F5F6CE;
+    min-height: 100%;
+} 
+
+
+.content {
+	/* padding: 1em; */
+	min-height: 70%;
+}
+
+
+.nav {
+	padding: 1em;
+	background-color: #D0F5A9;
+}
+.nav ul{
+	display: inline;
+}
+.nav ul li{
+	display: inline;
+}
+
+
+.sidebar {
+	padding: 1em;
+}
+
+
+.footer {
+	background-color: #D0F5A9;
+	padding: 1em;
+}
+.footer ul{
+	display: inline;
+}
+.footer ul li{
+	
+	display: inline;
 }
