@@ -1,13 +1,18 @@
-{% load staticfiles %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'blog_app/style.css' %}" />
+{% extends "blog_app/base.html" %}
+{% block index %}
 
-{% if latest_post_list %}
-    <ul>
-    {% for post in latest_post_list %}
-        <li><a href="{% url 'blog:detail' post.id %}">{{ post.title }} - {{ post.pub_date }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No Post are available.</p>
-{% endif %}
+	{% load staticfiles %}
+	
+	<link rel="stylesheet" type="text/css" href="{% static 'blog_app/style.css' %}" />
+	
+	{% if latest_post_list %}
+	    <ul>
+	    {% for post in latest_post_list %}
+	        <li><a href="{% url 'blog:detail' post.id %}">{{ post.title }} - {{ post.pub_date }}</a></li>
+	    {% endfor %}
+	    </ul>
+	{% else %}
+	    <p>No Post are available.</p>
+	{% endif %}
+{% endblock index %}
