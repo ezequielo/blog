@@ -36,5 +36,9 @@ def nav(request):
 
 def sidebar(request):
     return render(request,'blog_app/sidebar.html',{})
+
+
+def about(request):
+    return render(request,'blog_app/about.html',{})
     
     

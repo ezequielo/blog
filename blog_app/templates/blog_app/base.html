@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'blog_app/style.css' %}" />
 </head>
 
 <body>
-	<p>sadsadas</p>
      <div id="nav">
         {% block navbar %}
         	{% include "blog_app/nav.html" %}
@@ -13,7 +13,7 @@
     </div>
 
      <div id="content">
-        {% block index %}{% endblock index %}
+        {% block content %}{% endblock content %}
     </div>
     
     <div id="sidebar">

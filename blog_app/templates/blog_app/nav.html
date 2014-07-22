@@ -1,2 +1,5 @@
 {% load staticfiles %}
-	<h3>This is the navegation bar</h3>
+<ul>
+	<li><a href="{% url 'blog:index' %}">Home</a></li>
+	<li><a href="{% url 'blog:about' %}">About</a></li>
+</ul>

@@ -1,10 +1,6 @@
 
 {% extends "blog_app/base.html" %}
-{% block index %}
-
-	{% load staticfiles %}
-	
-	<link rel="stylesheet" type="text/css" href="{% static 'blog_app/style.css' %}" />
+{% block content %}
 	
 	{% if latest_post_list %}
 	    <ul>
@@ -15,4 +11,4 @@
 	{% else %}
 	    <p>No Post are available.</p>
 	{% endif %}
-{% endblock index %}
+{% endblock content %}
