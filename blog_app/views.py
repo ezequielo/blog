@@ -1,12 +1,19 @@
 from django.shortcuts import render, render_to_response, get_object_or_404
+
 from blog_app.models import Post, Comment, Category
+
 from django.http.response import HttpResponseRedirect
+
 from django.core.urlresolvers import reverse
 from django.core.context_processors import request
-from django.utils import timezone
+from django.core.context_processors import csrf
+
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as auth_login
-from django.core.context_processors import csrf
+from django.contrib.auth.models import User
+
+from django.utils import timezone
+
 # from django.views import generic
 
 
