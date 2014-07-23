@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from blog_app.models import Post, Comment 
+from blog_app.models import Post, Comment, Category
 from django.http.response import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.core.context_processors import request
@@ -11,8 +11,10 @@ from django.contrib.auth import login as auth_login
 
 
 def index(request):
-    latest_post_list = Post.objects.order_by('pub_date')[:5]
-    return render(request, 'blog_app/index.html', {'latest_post_list':latest_post_list})
+    vals = {}
+    vals['latest_post_list'] = Post.objects.order_by('pub_date')[:5]
+    vals['categories_list'] = Category.objects.order_by('name')
+    return render(request, 'blog_app/index.html', vals)
 
 
 def detail(request, post_id):
@@ -59,3 +61,13 @@ def logout_view(request):
     logout(request)
     return index(request)
     
+    
+def password_restore(request):
+    return render(request, 'blog_app/password_restore.html', {})
+
+
+def category(request, cat_id):
+    posts = Post.objects.filter(
+        fk_cat=cat_id
+    ).order_by('pub_date')
+    render(request, 'blog_app/index.html', {'latest_post_list':posts})

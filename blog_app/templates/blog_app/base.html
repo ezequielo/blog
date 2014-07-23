@@ -17,6 +17,12 @@
 	        {% block content %}{% endblock content %}
 	    </div>
 	    
+	    <div class="sidebar">
+	    	{% block cat_index %}
+	    		{% include "blog_app/cat_index.html" %}
+	    	{% endblock cat_index %}
+	    </div>
+	    
 	    <div class="footer">
 	    	{% block footer %}
 	    		{% include "blog_app/footer.html" %}

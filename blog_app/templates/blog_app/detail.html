@@ -5,7 +5,7 @@
 	<h2>{{ post }}</h2>
 	<h3>{{ post.pub_date }}</h3>
 	<p>{{ post.body }}</p>
-	
+	<p>Category: {{ post.fk_cat }}</p>
 	<!-- WRITE COMMENT -->
 	
 	<form action="{% url 'blog:detail' post.id %}" method="POST">

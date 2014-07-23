@@ -8,7 +8,11 @@ urlpatterns = patterns('',
 #     url(r'^(?P<pk>\d+)/results/$', views.ResultsView.as_view(), name='results'),
     url(r'^$', views.index, name='index'),
     url(r'^(?P<post_id>\d+)/$', views.detail, name='detail'),
+    url(r'^(?P<category_id>\d+)/$', views.category, name='category'),
     url(r'^about/$', views.about, name='about'),
     url(r'^login/$', views.login, name='login'),
     url(r'^logout/$', views.logout_view, name='logout'),
+    url(r'^password_restore/$', views.password_restore, name='password_restore'),
+    
+    
 )
