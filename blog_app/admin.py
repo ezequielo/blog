@@ -8,7 +8,7 @@ class CommentInline(admin.TabularInline):
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'pub_date')
+    list_display = ('title', 'pub_date', 'fk_cat')
     fieldsets = [
         ('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
         ('Categoria',               {'fields': ['fk_cat']}),

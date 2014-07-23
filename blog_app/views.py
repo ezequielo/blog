@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, render_to_response, get_object_or_404
 from blog_app.models import Post, Comment, Category
 from django.http.response import HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -6,6 +6,7 @@ from django.core.context_processors import request
 from django.utils import timezone
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as auth_login
+from django.core.context_processors import csrf
 # from django.views import generic
 
 
@@ -17,6 +18,12 @@ def index(request):
     return render(request, 'blog_app/index.html', vals)
 
 
+def all_posts(request):
+    vals = {}
+    vals['latest_post_list'] = Post.objects.order_by('pub_date')
+    vals['categories_list'] = Category.objects.order_by('name')
+    return render(request, 'blog_app/index.html', vals)
+    
 def detail(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     
@@ -42,6 +49,7 @@ def about(request):
 def login(request):
     url = 'blog_app/login.html'
     vals = {}
+    vals.update(csrf(request))
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['pass']
@@ -67,7 +75,9 @@ def password_restore(request):
 
 
 def category(request, cat_id):
-    posts = Post.objects.filter(
+    vals = {}
+    vals['categories_list'] = Category.objects.order_by('name')
+    vals['latest_post_list'] = Post.objects.filter(
         fk_cat=cat_id
     ).order_by('pub_date')
-    render(request, 'blog_app/index.html', {'latest_post_list':posts})
+    return render(request, 'blog_app/index.html', vals)
