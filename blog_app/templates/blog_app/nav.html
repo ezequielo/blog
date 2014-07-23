@@ -2,5 +2,13 @@
 <ul>
 	<li><a href="{% url 'blog:index' %}">Home</a></li>
 	<li><a href="{% url 'blog:about' %}">About</a></li>
-	<li><a href="{% url 'blog:login' %}">Login</a></li>
+	
+	{% if user.is_authenticated %}
+		<li>Hello, {{user.username}}</li>
+		<li><a href="{% url 'blog:logout' %}">Logout</a></li>
+	{% else %}
+		<li><a href="{% url 'blog:login' %}">Login</a></li>
+	{% endif %}
+	
+	
 </ul>

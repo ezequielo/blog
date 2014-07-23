@@ -4,7 +4,7 @@ from django.http.response import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.core.context_processors import request
 from django.utils import timezone
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as auth_login
 # from django.views import generic
 
@@ -53,5 +53,26 @@ def login(request):
         else:
             vals['error_msg'] = 'Usuario o contrasenya incorrecta!'
     return render(request, url, vals)
+
+
+def login(request):
+    url = 'blog_app/login.html'
+    vals = {}
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['pass']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                auth_login(request, user)
+                return index(request)
+            else:
+                vals['error_msg'] ='Usuario inactivo!'
+        else:
+            vals['error_msg'] = 'Usuario o contrasenya incorrecta!'
+    return render(request, url, vals)
     
     
+def logout_view(request):
+    logout(request)
+    return render(request, 'blog_app/index.html', {})
