@@ -2,7 +2,76 @@
 {% block content %}
     
     <h3>New account</h3>
-    <p>TODO: Create account form</p>
+	<form action="{% url 'blog:create_account' %}" method="POST">
+		{% csrf_token %}
+		<fieldset>
+			<p>Account info</p>
+			<table>
+				<tr>
+					<td>Username</td>
+					<td><input type="text" name="username"/></td>
+				</tr>
+				<tr>
+					<td>email</td>
+					<td><input type="text" name="email"/></td>
+				</tr>
+				<tr>
+					<td>Confirm Password</td>
+					<td><input type="text" name="email2"/></td>
+				</tr>
+				<tr>
+					<td>Password</td>
+					<td><input type="text" name="pass"/></td>
+				</tr>
+				<tr>
+					<td>Confirm Password</td>
+					<td><input type="text" name="pass2"/></td>
+				</tr>
+			</table>
+		</fieldset>
+		<fieldset>
+			<p>Personal info</p>
+			<table>
+				<tr>
+					<td>Picture</td>
+					<td><input type="image" name="pic"/></td>
+				</tr>
+				<tr>
+					<td>First Name</td>
+					<td><input type="text" name="fisrtname"/></td>
+				</tr>
+				<tr>
+					<td>Surname</td>
+					<td><input type="text" name="lastname"/></td>
+				</tr>
+				<tr>
+					<td>Date of birth</td>
+					<td><input type="text" name="dob"/></td>
+				</tr>
+				<tr>
+					<td>Country</td>
+					<td><input type="text" name="country"/></td>
+				</tr>
+				<tr>
+					<td>Region/State</td>
+					<td><input type="text" name="state"/></td>
+				</tr>
+				<tr>
+					<td>City</td>
+					<td><input type="text" name="city"/></td>
+				</tr>
+				<tr>
+					<td>Postal Code</td>
+					<td><input type="text" name="pcode"/></td>
+				</tr>
+				<tr>
+					<td>Street</td>
+					<td><input type="text" name="street"/></td>
+				</tr>
+			</table>
+		</fieldset>
+		<input type="submit" value="Create account"/>
+	</form>
     
 {% endblock content %}
 

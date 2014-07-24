@@ -29,6 +29,7 @@ def all_posts(request):
     vals['categories_list'] = Category.objects.order_by('name')
     return render(request, 'blog_app/index.html', vals)
     
+    
 def detail(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     
@@ -79,6 +80,7 @@ def password_restore(request):
     return render(request, 'blog_app/password_restore.html', {})
 
 def create_account(request):
+    # TODO
     return render(request, 'blog_app/create_account.html', {})
 
 

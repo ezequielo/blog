@@ -41,7 +41,7 @@ class Address(models.Model):
     
 class Person(models.Model):
     fk_user = models.ForeignKey(User)
-    fk_addr = models.ForeignKey(Address)
+    fk_addr = models.ForeignKey(Address, blank=True)
     pic = models.BinaryField()
     name = models.CharField(max_length=20)
     surname = models.CharField(max_length=40)
