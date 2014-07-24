@@ -10,7 +10,9 @@
 			<a href="{% url 'blog:logout' %}">Logout</a>
 		</li>
 	{% else %}
-		<li><a href="{% url 'blog:login' %}">Login</a></li>
+		<li>
+			<a href="{% url 'blog:login' %}">Login</a> / <a href="{% url 'blog:create_account' %}">Sing up</a>
+		</li>
 	{% endif %}
 	
 </ul>

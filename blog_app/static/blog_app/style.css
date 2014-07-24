@@ -18,7 +18,8 @@ body {
 
 .content {
 	/* padding: 1em; */
-	min-height: 70%;
+	min-height: 20em;
+	width: 60%;
 }
 
 
@@ -42,6 +43,10 @@ body {
 .sidebar {
 	padding: 1em;
 	background-color: white;
+	position: absolute;
+	right: 4em;
+	top: 7em;
+	width: 30%;
 }
 
 

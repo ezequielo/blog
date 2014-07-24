@@ -14,6 +14,9 @@ urlpatterns = patterns('',
     url(r'^login/$', views.login, name='login'),
     url(r'^logout/$', views.logout_view, name='logout'),
     url(r'^password_restore/$', views.password_restore, name='password_restore'),
+    url(r'^create_account/$', views.create_account, name='create_account'),
+    
+    
     
     
 )

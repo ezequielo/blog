@@ -1,18 +1,26 @@
 {% extends "blog_app/base.html" %}
 {% block content %}
+
 	<!-- POST -->
 	
 	<h2>{{ post }}</h2>
-	<h3>{{ post.pub_date }}</h3>
+	<h3>{{ post.pub_date }} by {{ post.fk_user }}</h3>
 	<p>{{ post.body }}</p>
 	<p>Category <a href="{% url 'blog:category' post.fk_cat.id %}">{{ post.fk_cat }}</a></p>
+	
 	<!-- WRITE COMMENT -->
 	
-	<form action="{% url 'blog:detail' post.id %}" method="POST">
-		{% csrf_token %}
-		<input type="text" name="text"/>
-		<input type="submit" value="Write a comment"/>
-	</form>
+	{% if user.is_authenticated %}
+		
+		<form action="{% url 'blog:detail' post.id %}" method="POST">
+			{% csrf_token %}
+			<input type="text" name="text"/>
+			<input type="submit" value="Write a comment"/>
+			<input type="hidden" name="user_id" value="{{ user.id }}"/>
+		</form>
+	{% else %}
+		<p>You need to <a href="{% url 'blog:login' %}">Login</a> to write a comment</p>
+	{% endif %}
 	
 	<!-- COMMENTS -->
 	
@@ -20,7 +28,10 @@
 	{% if comment_list %}
 	    <ul>
 	    {% for comment in comment_list %}
-	        <li>{{ comment.pub_date }} - {{ comment.text }}</li>
+	        <li>
+	        	<p>{{ comment.pub_date }} by {{ post.fk_user }} </p>
+	        	<p>{{ comment.text }}</p>
+	        </li>
 	    {% endfor %}
 	    </ul>
 	{% else %}

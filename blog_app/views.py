@@ -10,12 +10,10 @@ from django.core.context_processors import csrf
 
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as auth_login
-from django.contrib.auth.models import User
 
 from django.utils import timezone
 
 # from django.views import generic
-
 
 
 def index(request):
@@ -38,7 +36,8 @@ def detail(request, post_id):
     if request.method=='POST':
         if request.POST.get("text"):
             text = request.POST.get("text")
-            c = Comment.objects.create(fk_post = post, text = text, pub_date = timezone.now())
+            user = request.user
+            c = Comment.objects.create(fk_post = post, text = text, pub_date = timezone.now(), fk_user = user)
             c.save()
     
     # load all comments
@@ -47,10 +46,6 @@ def detail(request, post_id):
         ).order_by('pub_date')
     
     return render(request,'blog_app/detail.html',{'post':post, 'comment_list':comments})
-
-
-def about(request):
-    return render(request,'blog_app/about.html',{})
 
 
 def login(request):
@@ -76,9 +71,15 @@ def logout_view(request):
     logout(request)
     return index(request)
     
+
+def about(request):
+    return render(request,'blog_app/about.html',{})
     
 def password_restore(request):
     return render(request, 'blog_app/password_restore.html', {})
+
+def create_account(request):
+    return render(request, 'blog_app/create_account.html', {})
 
 
 def category(request, cat_id):

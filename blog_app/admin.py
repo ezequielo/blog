@@ -12,6 +12,7 @@ class PostAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
         ('Categoria',               {'fields': ['fk_cat']}),
+        ('Categoria',               {'fields': ['fk_user']}),
         ('Post',               {'fields': ['title','body']}),
     ]
     inlines = [CommentInline]
