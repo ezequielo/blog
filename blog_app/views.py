@@ -13,6 +13,8 @@ from django.contrib.auth import login as auth_login
 
 from django.utils import timezone
 
+from blog_app.forms import CreateAccountForm
+
 # from django.views import generic
 
 
@@ -32,7 +34,6 @@ def all_posts(request):
     
 def detail(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
-    
     # if write a comment
     if request.method=='POST':
         if request.POST.get("text"):
@@ -40,7 +41,6 @@ def detail(request, post_id):
             user = request.user
             c = Comment.objects.create(fk_post = post, text = text, pub_date = timezone.now(), fk_user = user)
             c.save()
-    
     # load all comments
     comments = Comment.objects.filter(
             fk_post=post_id
@@ -74,14 +74,22 @@ def logout_view(request):
     
 
 def about(request):
+    # TODO
     return render(request,'blog_app/about.html',{})
     
 def password_restore(request):
+    # TODO
     return render(request, 'blog_app/password_restore.html', {})
 
+
 def create_account(request):
-    # TODO
-    return render(request, 'blog_app/create_account.html', {})
+    if request.method == 'POST':
+        form = CreateAccountForm(request.POST)
+        if form.is_valid():
+            return render(request, 'blog_app/index.html', {})
+    else:
+        form = CreateAccountForm()
+        return render(request, 'blog_app/create_account.html', {'form':form})
 
 
 def category(request, cat_id):
