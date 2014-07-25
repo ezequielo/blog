@@ -30,7 +30,6 @@ def myotherfunction():
 
 
 def index(request):
-    logging.info('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
     vals = {}
     vals['latest_post_list'] = Post.objects.order_by('pub_date')[:5]
     vals['categories_list'] = Category.objects.order_by('name')
@@ -76,8 +75,10 @@ def login(request):
                 return HttpResponseRedirect('/blog')
             else:
                 vals['error_msg'] ='Usuario inactivo!'
+                logger.error("Inactive user trying to login")
         else:
             vals['error_msg'] = 'Usuario o contrasenya incorrecta!'
+            logger.error("User %s Login attempt failed" % (username and username or 'Blank'))
     return render(request, url, vals)
     
     
