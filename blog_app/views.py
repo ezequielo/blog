@@ -1,32 +1,26 @@
+from django.utils import timezone
+from django.http.response import HttpResponseRedirect
 # Shortcuts
 from django.shortcuts import render, render_to_response, get_object_or_404
-# Models
-from blog_app.models import Post, Comment, Category
-
-from django.http.response import HttpResponseRedirect
-
+# Core
 from django.core.urlresolvers import reverse
 from django.core.context_processors import request
 from django.core.context_processors import csrf
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Auth
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as auth_login
-
-from django.utils import timezone
+# Models
+from blog_app.models import Post, Comment, Category
 # Forms
 from blog_app.forms import CreateAccountForm, ContactForm
 # Loggin
 import logging
-logger = logging.getLogger(__name__)
-
-
-def myfunction():
-    logger.debug("this is a debug message!")
- 
-def myotherfunction():
-    logger.error("this is an error message!!")
-
 # from django.views import generic
+
+
+
+logger = logging.getLogger(__name__)
 
 
 def index(request):
@@ -37,8 +31,19 @@ def index(request):
 
 
 def all_posts(request):
+    post_list = Post.objects.order_by('pub_date')
+    paginator = Paginator(post_list, 6)
+    page = request.GET.get('page')
+    
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+    
     vals = {}
-    vals['latest_post_list'] = Post.objects.order_by('pub_date')
+    vals['latest_post_list'] = posts
     vals['categories_list'] = Category.objects.order_by('name')
     return render(request, 'blog_app/index.html', vals)
     

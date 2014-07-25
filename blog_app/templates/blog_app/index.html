@@ -10,4 +10,22 @@
 	{% else %}
 	    <p>No Post are available.</p>
 	{% endif %}
+	
+	<div class="pagination">
+		<span>
+			{% if latest_post_list.has_previous %}
+				<a href="?page={{ latest_post_list.previous_page_number }}">previous</a>
+			{% endif %}
+			{% if latest_post_list.has_previous or latest_post_list.has_next %}
+		    <span class="current">
+		        Page {{ latest_post_list.number }} of {{ latest_post_list.paginator.num_pages }}.
+		    </span>
+		    {% endif %}
+		    {% if latest_post_list.has_next %}
+		    	<a href="?page={{ latest_post_list.next_page_number }}">next</a>
+		    {% endif %}
+		</span>
+	</div>
+		
+
 {% endblock content %}
