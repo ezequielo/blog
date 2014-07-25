@@ -1,5 +1,6 @@
+# Shortcuts
 from django.shortcuts import render, render_to_response, get_object_or_404
-
+# Models
 from blog_app.models import Post, Comment, Category
 
 from django.http.response import HttpResponseRedirect
@@ -7,18 +8,29 @@ from django.http.response import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.core.context_processors import request
 from django.core.context_processors import csrf
-
+# Auth
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as auth_login
 
 from django.utils import timezone
-
+# Forms
 from blog_app.forms import CreateAccountForm, ContactForm
+# Loggin
+import logging
+logger = logging.getLogger(__name__)
+
+
+def myfunction():
+    logger.debug("this is a debug message!")
+ 
+def myotherfunction():
+    logger.error("this is an error message!!")
 
 # from django.views import generic
 
 
 def index(request):
+    logging.info('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
     vals = {}
     vals['latest_post_list'] = Post.objects.order_by('pub_date')[:5]
     vals['categories_list'] = Category.objects.order_by('name')
@@ -41,6 +53,7 @@ def detail(request, post_id):
             user = request.user
             c = Comment.objects.create(fk_post = post, text = text, pub_date = timezone.now(), fk_user = user)
             c.save()
+            return HttpResponseRedirect('.')
     # load all comments
     comments = Comment.objects.filter(
             fk_post=post_id
@@ -60,7 +73,7 @@ def login(request):
         if user is not None:
             if user.is_active:
                 auth_login(request, user)
-                return index(request)
+                return HttpResponseRedirect('/blog')
             else:
                 vals['error_msg'] ='Usuario inactivo!'
         else:

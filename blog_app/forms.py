@@ -3,7 +3,9 @@ from django import forms
 class CreateAccountForm(forms.Form):
     username = forms.CharField()
     email = forms.EmailField()
+    email_confirm = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput())
+    password_confirm = forms.CharField(widget=forms.PasswordInput())
 #     TODO
 #     def send_email(self):
 #         # send email using the self.cleaned_data dictionary
