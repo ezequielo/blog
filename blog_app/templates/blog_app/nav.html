@@ -3,6 +3,7 @@
 	<li><a href="{% url 'blog:index' %}">Home</a></li>
 	<li><a href="{% url 'blog:post' %}">All Posts</a></li>
 	<li><a href="{% url 'blog:about' %}">About</a></li>
+	<li><a href="{% url 'blog:contact' %}">Contact</a></li>
 	
 	{% if user.is_authenticated %}
 		<li>

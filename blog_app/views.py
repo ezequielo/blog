@@ -13,7 +13,7 @@ from django.contrib.auth import login as auth_login
 
 from django.utils import timezone
 
-from blog_app.forms import CreateAccountForm
+from blog_app.forms import CreateAccountForm, ContactForm
 
 # from django.views import generic
 
@@ -86,10 +86,10 @@ def create_account(request):
     if request.method == 'POST':
         form = CreateAccountForm(request.POST)
         if form.is_valid():
-            return render(request, 'blog_app/index.html', {})
+            return HttpResponseRedirect('/blog')
     else:
         form = CreateAccountForm()
-        return render(request, 'blog_app/create_account.html', {'form':form})
+    return render(request, 'blog_app/create_account.html', {'form':form})
 
 
 def category(request, cat_id):
@@ -99,3 +99,13 @@ def category(request, cat_id):
         fk_cat=cat_id
     ).order_by('pub_date')
     return render(request, 'blog_app/index.html', vals)
+
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            return HttpResponseRedirect('/blog')
+    else:
+        form = ContactForm()
+    return render(request, 'blog_app/contact.html', {'form':form})
